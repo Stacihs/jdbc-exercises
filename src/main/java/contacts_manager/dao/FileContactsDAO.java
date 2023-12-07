@@ -1,6 +1,5 @@
 package contacts_manager.dao;
 
-import contacts_manager.dao.ContactsDAO;
 import contacts_manager.models.Contact;
 
 import java.io.IOException;
@@ -20,19 +19,6 @@ public class FileContactsDAO implements ContactsDAO {
     private final static Path dataDirectory = Paths.get(directory);
     private final static Path dataFile = Paths.get(directory, filename);
 
-    static void createDirs() {
-        try {
-            if (Files.notExists(dataDirectory)) {
-                Files.createDirectories(dataDirectory);
-            }
-
-            if (!Files.exists(dataFile)) {
-                Files.createFile(dataFile);
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
 
 
     @Override
@@ -86,7 +72,7 @@ public class FileContactsDAO implements ContactsDAO {
     }
 
     @Override
-    public List<Contact> searchContacts(String searchTerm) {
+    public Contact searchContacts(String searchTerm) {
             try {
                 List<String> lines = Files.readAllLines(dataFile);
                 for (String line : lines) {
@@ -102,6 +88,20 @@ public class FileContactsDAO implements ContactsDAO {
 
     @Override
     public void open() {
+
+        Path filePath = Paths.get("../data/contacts.text");
+
+        try {
+            if (Files.notExists(dataDirectory)) {
+                Files.createDirectories(dataDirectory);
+            }
+
+            if (!Files.exists(dataFile)) {
+                Files.createFile(dataFile);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
     }
 

@@ -7,11 +7,29 @@ public class Contact {
     private String fullName;
     private String phoneNumber;
 
-    public Contact(String fullName, String phoneNumber) {
-        this.id = 1;
+    public Contact(long id, String fullName, String phoneNumber) {
+        this.id = id;
         this.fullName = fullName;
         this.phoneNumber = phoneNumber;
     }
+
+    @Override
+    public String toString() {
+        return "\nCONTACT: " + "\n" +
+                "ID: " + id +  "\n" +
+                "Name: " + fullName.toUpperCase() + "\n" +
+                "Phone Number: " + phoneNumber + "\n";
+    }
+
+    public Contact() {
+
+    }
+
+    public Contact(String fullName, String phoneNumber) {
+        this.fullName = fullName;
+        this.phoneNumber = phoneNumber;
+    }
+
 
     public long getId() {
         return id;
